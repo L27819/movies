@@ -44,8 +44,10 @@ app.put('/movies/:movieId', async (req, res) => {
     res.status(204).json({});
 });
 
-app.delete('/movies/:title', (req, res) => {
+app.delete('/movies/:movieId', async (req, res) => {
+    await db('movies').del().where({ id: req.params.movieId });
 
+    res.status(204).json({});
 });
 
 app.listen(8081, () => {
